@@ -15,7 +15,8 @@ resource "system_folder" "etc_apt_keyrings" {
 }
 
 data "system_command" "docker_repository_signing_key" {
-  command = "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg"
+  depends_on = [system_folder.etc_apt_keyrings]
+  command    = "curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /etc/apt/keyrings/docker.gpg"
 }
 
 data "system_command" "docker_reposistory" {
