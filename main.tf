@@ -28,7 +28,7 @@ data "system_command" "docker_reposistory" {
 
 data "system_command" "apt_cache_update" {
   depends_on = [data.system_command.docker_reposistory]
-  command    = "apt update"
+  command    = "apt-get update -y"
 }
 
 locals {
